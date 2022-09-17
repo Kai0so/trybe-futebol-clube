@@ -1,16 +1,17 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
-import decodeJWT from '../helpers/decodeJWT';
 
-const tokenValidation = async (req: Request, res: Response) => {
+const secretPass = process.env.JWT_SECRET || '';
+
+const tokenValidation = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.headers.authorization;
     if (!token) return res.status(401).json({ message: 'Token not found' });
-    const decoded = decodeJWT<jwt.JwtPayload>(token);
-    if (decoded) return res.status(200).json({ role: decoded.data.role });
+    jwt.verify(token, secretPass);
   } catch (error) {
-    return res.status(401).json({ message: 'Expired or invalid token' });
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
+  next();
 };
 
 export default tokenValidation;
