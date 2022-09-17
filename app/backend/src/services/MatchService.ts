@@ -9,6 +9,11 @@ type MatchData = {
   awayTeamGoals: number;
 };
 
+type ScoreData = {
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+};
+
 class MatchService {
   public model: MatchModel;
 
@@ -55,6 +60,16 @@ class MatchService {
     const message = 'Finished';
     await MatchModel.update(
       { inProgress: false },
+      { where: { id } },
+    );
+    return message;
+  };
+
+  public updateScore = async (id: number, scoreData: ScoreData) => {
+    const { homeTeamGoals, awayTeamGoals } = scoreData;
+    const message = 'Success!';
+    await MatchModel.update(
+      { homeTeamGoals, awayTeamGoals },
       { where: { id } },
     );
     return message;

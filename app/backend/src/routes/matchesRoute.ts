@@ -11,5 +11,6 @@ router.get('/matches', matchController.getAll);
 router.post('/matches', tokenValidation, matchController.create);
 // PATCH endpoints
 router.patch('/matches/:id/finish', matchController.finish);
+router.patch('/matches/:id', matchController.updateScore);
 
 export default router;
