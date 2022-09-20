@@ -1,3 +1,3 @@
-import { getHomeQuery, getAwayQuery } from './queries';
+import { getHomeQuery, getAwayQuery, getAllQuery } from './queries';
 
-export { getHomeQuery, getAwayQuery };
+export { getHomeQuery, getAwayQuery, getAllQuery };

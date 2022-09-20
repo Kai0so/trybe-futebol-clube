@@ -6,5 +6,6 @@ const router = Router();
 // GET endpoints
 router.get('/leaderboard/home', LearderBoardController.getHome);
 router.get('/leaderboard/away', LearderBoardController.getAway);
+router.get('/leaderboard', LearderBoardController.getAll);
 
 export default router;
