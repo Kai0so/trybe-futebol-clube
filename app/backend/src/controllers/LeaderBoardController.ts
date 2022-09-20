@@ -6,6 +6,11 @@ class LeaderBoardController {
     const result = await LeaderBoardService.getHome();
     res.status(200).json(result);
   }
+
+  static async getAway(req: Request, res: Response) {
+    const result = await LeaderBoardService.getAway();
+    res.status(200).json(result);
+  }
 }
 
 export default LeaderBoardController;
